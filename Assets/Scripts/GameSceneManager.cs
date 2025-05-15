@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameSceneManager : MonoBehaviour
 {
     public Button _buttonForCountine;
+    public Button _buttonForLose;
+    public TMP_Text _loseMessage;
     public Image _fadeStart;
     public Image _fadeEnd;
     public TMP_Text _StartMessage;
@@ -27,10 +29,16 @@ public class GameSceneManager : MonoBehaviour
             Debug.Log($"Key down");
             StartCoroutine(FadeInMapScene());
         }
-        
-        if (GameManager.Instance.isNoPower || GameManager.Instance.hasCatchEnemy)
+
+        if (GameManager.Instance.hasCatchEnemy)
         {
             _buttonForCountine.gameObject.SetActive(true);
+            StartCoroutine(FadeOutToHitScene());
+        }
+        if (GameManager.Instance.isNoPower)
+        {   
+            _buttonForLose.gameObject.SetActive(true);
+            _loseMessage.gameObject.SetActive(true);
             StartCoroutine(FadeOutToHitScene());
         }
     }

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HitScene.unity
     guid: c43de60d17962d94bacea27678c82f39
+  - enabled: 1
+    path: Assets/Scenes/ScoreScene.unity
+    guid: c3fbbad5617181946aca9b89f92eb7e1
+  - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: 96200a9d4298d8c48b8e6b8d963ed197
   m_configObjects: {}

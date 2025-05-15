@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreSceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TMP_Text _scoreText;
 
-    // Update is called once per frame
     void Update()
     {
-        //gggggg
+        if (GameManager.Instance != null)
+        {   float score = GameManager.Instance.FinalScore;
+            _scoreText.text = $"Score : {score}";
+        }
+    }
+
+    public void BackToMenuScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
 }

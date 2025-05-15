@@ -26,12 +26,12 @@ public class Hit : MonoBehaviour
             _Plane.SetActive(false);
             Time.timeScale = 1;
             Debug.Log("countDown");
-            StartCoroutine(TimerSet());
+            StartCoroutine(TimerSet(()=> ChageScene("ScoreScene")));
         }
     }
 
 
-    void HitBySpace(){
+    private void HitBySpace(){
         if (_chargeEffect.isEmitting) 
         {
             _chargeEffect.Emit(5);
@@ -39,9 +39,15 @@ public class Hit : MonoBehaviour
         _counter ++;
         _counterText.text = $"{_counter}";
     }
+     private void ChageScene(string sceneName){
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+    }
 
-    private IEnumerator TimerSet(){
-        while(true){
+    private IEnumerator TimerSet(System.Action action)
+    {
+        _startTime = 0;
+        while (true)
+        {
             _startTime += Time.deltaTime;
             float timeLeft = _hitTime - _startTime;
             if (timeLeft > 0f)
@@ -56,10 +62,11 @@ public class Hit : MonoBehaviour
                 yield return null;
             }
             if (timeLeft <= 0f)
-            {   
+            {
                 Time.timeScale = 0;
                 Debug.Log("countDown End!");
                 GameManager.Instance.FinalScore = _finalPlayerScore;
+                if (action != null) action.Invoke();
                 yield break;
             }
         }

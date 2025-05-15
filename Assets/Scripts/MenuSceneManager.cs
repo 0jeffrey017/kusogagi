@@ -10,36 +10,46 @@ public class MenuSceneManager : MonoBehaviour
     private float _lastTime;
     private enum ESceneName{
         MapScene,HitScene,MenuScene
-    }  
+    }
 
+    void Start()
+    {
+        _fade.raycastTarget = false;
+        GameManager.Instance.InitializationAll();
+    }
 
-    
-    public void ClickButtonChageToMainScene(){
-
-        StartCoroutine(FazaOutInMenuScene(
-            () => ChageScene(ESceneName.MapScene.ToString())
+    public void ClickButtonChangeToMainScene(){
+        Debug.Log("button had click");
+        StartCoroutine(FadeOutInMenuScene(
+            () => ChangeScene(ESceneName.MapScene.ToString())
         ));
     }
 
-    private void ChageScene(string sceneName){
+    private void ChangeScene(string sceneName){
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
-    private IEnumerator FazaOutInMenuScene(System.Action action){
+    private IEnumerator FadeOutInMenuScene(System.Action action){
             _fade.raycastTarget = true;
-        while(true){
+            _lastTime = 0f;
+        while (true)
+        {
             _lastTime += Time.deltaTime;
             Color newColor = _fade.color;
             float fadePer = _lastTime / _fadeTime;
             float a = fadePer;
-            if(_lastTime < _fadeTime){
+            if (_lastTime < _fadeTime)
+            {
                 newColor.a = a;
                 _fade.color = newColor;
                 yield return null;
-            }else{
+            }
+            else
+            {
                 newColor.a = 1;
                 _fade.color = newColor;
-                if(action != null) action.Invoke();
+                if (action != null) action.Invoke();
+                Debug.Log("IEnumerator FazaOutInMenuScene over");
                 yield break;
             }
         }
