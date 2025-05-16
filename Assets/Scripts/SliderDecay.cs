@@ -8,9 +8,6 @@ public class SliderDecay : MonoBehaviour
     private float decaySpeed = 1f;
     [SerializeField]private PlayerController player;
     public float playerScore { get; private set; }
-
-    
-
     
     void Awake()
     {   
@@ -19,9 +16,11 @@ public class SliderDecay : MonoBehaviour
         }
     }
     void Update()
-    {   
-
-        if (GameManager.Instance.hasCatchEnemy){
+    {
+        if (!GameManager.Instance.isMainGameStart) return;
+        
+        if (GameManager.Instance.hasCatchEnemy)
+        {
             playerScore = scrollbar.size;
             GameManager.Instance.Score = playerScore;
             return;

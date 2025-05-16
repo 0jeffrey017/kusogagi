@@ -508,9 +508,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 97832676}
-  - {fileID: 1943472248}
-  - {fileID: 1217783806}
-  - {fileID: 1350634672}
   m_Father: {fileID: 1144172341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -889,6 +886,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1350634672}
+  - {fileID: 1217783806}
+  - {fileID: 1943472248}
   - {fileID: 659197129}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -992,7 +992,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1101022720}
-  m_Father: {fileID: 659197129}
+  m_Father: {fileID: 1144172341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1125,7 +1125,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 653782096}
-  m_Father: {fileID: 659197129}
+  m_Father: {fileID: 1144172341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1349,6 +1349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fade: {fileID: 659197127}
   _fadeTime: 3
+  _startButton: {fileID: 1943472249}
 --- !u!4 &1773513073
 Transform:
   m_ObjectHideFlags: 0
@@ -1396,7 +1397,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1034587424}
-  m_Father: {fileID: 659197129}
+  m_Father: {fileID: 1144172341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

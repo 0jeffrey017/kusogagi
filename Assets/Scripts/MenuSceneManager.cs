@@ -7,6 +7,7 @@ public class MenuSceneManager : MonoBehaviour
 {   
     [SerializeField]private Image _fade;
     [SerializeField]private float _fadeTime;
+    public Button _startButton;
     private float _lastTime;
     private enum ESceneName{
         MapScene,HitScene,MenuScene
@@ -16,6 +17,7 @@ public class MenuSceneManager : MonoBehaviour
     {
         _fade.raycastTarget = false;
         GameManager.Instance.InitializationAll();
+        _startButton.onClick.AddListener(ClickButtonChangeToMainScene);
     }
 
     public void ClickButtonChangeToMainScene(){
@@ -49,6 +51,7 @@ public class MenuSceneManager : MonoBehaviour
                 newColor.a = 1;
                 _fade.color = newColor;
                 if (action != null) action.Invoke();
+                _fade.raycastTarget = false;
                 Debug.Log("IEnumerator FazaOutInMenuScene over");
                 yield break;
             }
