@@ -18,6 +18,7 @@ public class ScoreSceneManager : MonoBehaviour
 
     public void BackToMenuScene()
     {
+        Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
 }

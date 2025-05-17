@@ -17,6 +17,9 @@ public class MenuSceneManager : MonoBehaviour
     {
         _fade.raycastTarget = false;
         GameManager.Instance.InitializationAll();
+        Color color = _fade.color;
+        color.a = 0f;
+        _fade.color = color;
         _startButton.onClick.AddListener(ClickButtonChangeToMainScene);
     }
 
@@ -31,30 +34,29 @@ public class MenuSceneManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
-    private IEnumerator FadeOutInMenuScene(System.Action action){
-            _fade.raycastTarget = true;
-            _lastTime = 0f;
-        while (true)
+    private IEnumerator FadeOutInMenuScene(System.Action action)
+    {
+        _fade.raycastTarget = true;
+        _lastTime = 0f;
+        Debug.Log("FadeOutInMenuScene Start");
+        while (_lastTime < _fadeTime)
         {
             _lastTime += Time.deltaTime;
+            Debug.Log($"FadeOutInMenuScene _lastTime = {_lastTime}");
             Color newColor = _fade.color;
             float fadePer = _lastTime / _fadeTime;
             float a = fadePer;
-            if (_lastTime < _fadeTime)
-            {
-                newColor.a = a;
-                _fade.color = newColor;
-                yield return null;
-            }
-            else
-            {
-                newColor.a = 1;
-                _fade.color = newColor;
-                if (action != null) action.Invoke();
-                _fade.raycastTarget = false;
-                Debug.Log("IEnumerator FazaOutInMenuScene over");
-                yield break;
-            }
+            newColor.a = a;
+            _fade.color = newColor;
+            yield return null;
         }
+        Color Color = _fade.color;
+        Color.a = 1;
+        _fade.color = Color;
+        _fade.raycastTarget = false;
+        Debug.Log("IEnumerator FazaOutInMenuScene over");
+        if (action != null) action.Invoke();
+        yield break;
+
     }
 }
